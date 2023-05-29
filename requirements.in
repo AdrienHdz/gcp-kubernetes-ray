@@ -1,0 +1,10 @@
+ray[default]
+mlflow
+pydantic
+
+torch
+torchvision
+tabulate
+
+pyarrow
+fastparquet
