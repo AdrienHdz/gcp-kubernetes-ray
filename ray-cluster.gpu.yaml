@@ -1,0 +1,74 @@
+# Adapted from Ray documentation's template
+# RayCluster configuration for Pytorch training on Kubernetes and GCP
+apiVersion: ray.io/v1alpha1
+kind: RayCluster
+metadata:
+  labels:
+    controller-tools.k8s.io: "1.0"
+    # A unique identifier for the head node and workers of this cluster.
+  name: raycluster
+spec:
+  # The version of Ray you are using. Make sure all Ray containers are running this version of Ray.
+  rayVersion: '2.2.0'
+  ######################headGroupSpec#################################
+  # head group template and specs, (perhaps 'group' is not needed in the name)
+  headGroupSpec:
+    # logical group name, for this called head-group, also can be functional
+    # pod type head or worker
+    # rayNodeType: head # Not needed since it is under the headgroup
+    # the following params are used to complete the ray start: ray start --head --block ...
+    rayStartParams:
+      dashboard-host: '0.0.0.0'
+    #pod template
+    template:
+      spec:
+        serviceAccountName: gke-training
+        containers:
+        # The Ray head pod
+        - name: ray-head
+          image: rayproject/ray-ml:2.2.0-gpu
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh","-c","ray stop"]
+          resources:
+            limits:
+              cpu: "4"
+              memory: "24G"
+            requests:
+              cpu: "4"
+              memory: "12G"
+  workerGroupSpecs:
+  # the pod replicas in this group typed worker
+  - replicas: 1
+    minReplicas: 1
+    maxReplicas: 300
+    # logical group name, for this called small-group, also can be functional
+    groupName: small-group
+    rayStartParams:
+      num-gpus: "4"
+    #pod template
+    template:
+      metadata:
+        labels:
+          key: value
+        # annotations for pod
+        annotations:
+          key: value
+      spec:
+        containers:
+        - name: machine-learning 
+          image: rayproject/ray-ml:2.2.0-gpu
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh","-c","ray stop"]
+          resources:
+            limits:
+              cpu: "8"
+              memory: "24G"
+              nvidia.com/gpu: 4
+            requests:
+              cpu: "4"
+              memory: "12G"
+              nvidia.com/gpu: 4
