@@ -88,31 +88,31 @@ helm uninstall kuberay-operator
 ## Advanced Configuration: Workload Identity Setup
 Workload Identity is the clean way of securely connecting to other Google Cloud services from within Kubernetes pods.
 This is done by binding a Google Cloud service account to a Kubernetes service account, with creates a secure authentication process without the need for keys. 
-# 1:
+## 1: Create a Kubernetes service account
 ```sh
 kubectl create serviceaccount gke-training
 ```
 This command creates a Kubernetes service account named "gke-training" in the current namespace. Service accounts provide an identity for processes that run in a pod.
 
-# 2:
+## 2: Create a Google Cloud service account
 ```sh
 gcloud iam service-accounts create gke-training-wli --project=kubernetes-ai
 ```
 This command creates a Google Cloud service account named "gke-training-wli" within a Google Cloud project named "kubernetes-ai". Google cloud accounts are used by applications to authenticate to other Google Cloud services.
 
-# 3:
+## 3: Assign roles to the service account
 ```sh
 gcloud storage buckets add-iam-policy-binding gs://gke-model-results --member "serviceAccount:gke-training-wli@kubernetes-ai.iam.gserviceaccount.com" --role "roles/storage.admin"
 ```
 Here, we assign the "storage.admin" role to the Google Cloud service account for the "gke-model-results" bucket. This role has permissions that allow it to perform administrative actions on the specified bucket.
 
-# 4:
+## 4: Allows Kubernetes service account to impersonate GCP service account
 ```sh
 gcloud iam service-accounts add-iam-policy-binding gke-training-wli[@kubernetes-ai.iam.gserviceaccount.com](mailto:web-wli@magic-cropping-tool.iam.gserviceaccount.com) --role roles/iam.workloadIdentityUser --member "serviceAccount:kubernetes-ai.svc.id.goog[default/gke-training]"
 ```
 This commands allows the Kubernetes service account "gke-training" to impersonate the Google Cloud service account "gke-training-wli". The "iam.workloadIdentityUser" rose is added to the Google Cloud service account, which allows the service account to be impersonated by the specified member.
 
-# 5:
+## 5: Annotate the service account to Kubernetes
 ```sh
 kubectl annotate serviceaccount gke-training [iam.gke.io/gcp-service-account=gke-training-wli@kubernetes-ai.iam.gserviceaccount.com](http://iam.gke.io/gcp-service-account=web-wli@magic-cropping-tool.iam.gserviceaccount.com)
 ```
