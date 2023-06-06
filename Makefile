@@ -20,7 +20,7 @@ lint:
 
 .PHONY: typing
 typing:
-	find parallelize_torch parallelize_xgboost -type -name '*.py' -exec mypy --implicit-optional {} +
+	find parallelize_torch parallelize_xgboost -type f -name '*.py' -exec mypy --implicit-optional {} +
 
 .PHONY: refactor
 refactor: format lint typing 
