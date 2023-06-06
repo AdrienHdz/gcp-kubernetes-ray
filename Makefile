@@ -7,7 +7,7 @@ install:
 
 .PHONY: test
 test:
-	# python -m pytest -vv --cov=main main/test_*.py
+	# python -m pytest -vv --cov=main parallelize_torch/test/test_*.py
 
 .PHONY: format
 format:
