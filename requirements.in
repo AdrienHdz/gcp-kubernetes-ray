@@ -1,6 +1,7 @@
 ray[default]
 mlflow
 ruff
+black
 
 torch
 torchvision
