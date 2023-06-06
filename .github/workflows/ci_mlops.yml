@@ -15,12 +15,16 @@ jobs:
     - name: Install dependencies
       run:
         make install
-    - name: Linting with Ruff
-      run:
-        make lint
-    - name: Test with Pytest
-      run:
-        make test
     - name: Format code with Python black
       run:
         make format
+    - name: Linting with Ruff
+      run:
+        make lint
+    - name: Checking type hinting with MyPy
+      run:
+        make typing
+    - name: Test with Pytest
+      run:
+        make test
+
