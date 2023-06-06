@@ -1,5 +1,5 @@
-import torch
 from torch import nn
+
 
 class BasicNeuralNetwork(nn.Module):
     def __init__(self):
@@ -12,7 +12,7 @@ class BasicNeuralNetwork(nn.Module):
             nn.ReLU(),
             nn.Linear(512, 256),
             nn.ReLU(),
-            nn.Linear(256, 10)
+            nn.Linear(256, 10),
         )
 
     def forward(self, x):

@@ -12,26 +12,21 @@ from torchvision.transforms import ToTensor
 
 import ray.train as train
 from ray.train.torch import TorchTrainer
-from ray.air.config import ScalingConfig, RunConfig
+from ray.air.config import ScalingConfig
 
 from model import BasicNeuralNetwork
 from config import MainConfig
 
 # Download training data from open datasets.
 training_data = datasets.FashionMNIST(
-    root="~/data",
-    train=True,
-    download=False,
-    transform=ToTensor(),
+    root="~/data", train=True, download=False, transform=ToTensor(),
 )
 
 # Download test data from open datasets.
 test_data = datasets.FashionMNIST(
-    root="~/data",
-    train=False,
-    download=False,
-    transform=ToTensor(),
+    root="~/data", train=False, download=False, transform=ToTensor(),
 )
+
 
 def train_epoch(dataloader, model, loss_fn, optimizer):
     size = len(dataloader.dataset) // session.get_world_size()
@@ -132,7 +127,6 @@ if __name__ == "__main__":
     # )
 
     # args, _ = parser.parse_known_args()
-
 
     # if args.smoke_test:
     #     # 2 workers + 1 for trainer.

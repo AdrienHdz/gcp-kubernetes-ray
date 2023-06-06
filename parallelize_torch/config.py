@@ -1,5 +1,6 @@
 from pydantic import BaseSettings
 
+
 class MainConfig(BaseSettings):
     # hyperparameters
     num_workers: int = 4
