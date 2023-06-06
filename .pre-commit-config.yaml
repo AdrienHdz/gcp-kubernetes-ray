@@ -1,4 +1,4 @@
-files: ^(parallelize_torch|parallelize_xgboost)/.*\.py$
+files: parallelize
 repos:
   - repo: local
     hooks:
