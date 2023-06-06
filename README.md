@@ -1,3 +1,5 @@
+[![Continuous Integration](https://github.com/AdrienHdz/gcp-kubernetes-ray/actions/workflows/ci_mlops.yml/badge.svg)](https://github.com/AdrienHdz/gcp-kubernetes-ray/actions/workflows/ci_mlops.yml)
+
 # Kubernetes, Ray, and GCP Setup Guide
 
 In this repository, we're delving into the application of cutting-edge technologies like Kubernetes, GCP, and Ray for effective distributed computing. These tools are instrumental in enhancing AI capabilities, enabling large-scale training of machine learning models, thereby resulting in improved predictions and faster data processing. They help tackle computational challenges, facilitate AI experimentation, speed up the deployment of solutions, and provide a competitive advantage.

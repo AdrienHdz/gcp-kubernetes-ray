@@ -1,4 +1,4 @@
-name: CI_MLOps
+name: Continuous Integration
 on:
   push:
     paths-ignore:
