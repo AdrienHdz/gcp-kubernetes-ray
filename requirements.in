@@ -2,6 +2,7 @@ ray[default]
 mlflow
 ruff
 black
+pre-commit
 
 torch
 torchvision

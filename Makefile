@@ -4,6 +4,7 @@ install:
 	{ pip freeze | grep pip-tools > /dev/null || pip install pip-tools ; }
 	pip-compile requirements.in &&\
 	pip-sync requirements.txt
+	pre-commit install
 
 .PHONY: test
 test:
