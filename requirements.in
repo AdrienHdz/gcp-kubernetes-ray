@@ -3,6 +3,7 @@ mlflow
 ruff
 black
 pre-commit
+mypy 
 
 torch
 torchvision
