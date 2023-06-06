@@ -7,7 +7,8 @@ from ray.air import session
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
-from torchvision import datasets
+
+# from torchvision import datasets
 from torchvision.transforms import ToTensor
 
 import ray.train as train
@@ -17,14 +18,28 @@ from ray.air.config import ScalingConfig
 from model import BasicNeuralNetwork
 from config import MainConfig
 
-# Download training data from open datasets.
-training_data = datasets.FashionMNIST(
-    root="~/data", train=True, download=False, transform=ToTensor(),
+# # Download training data from open datasets.
+# training_data = datasets.Places365(
+#     root="~/data", train=True, download=True, transform=ToTensor(),
+# )
+
+# # Download test data from open datasets.
+# test_data = datasets.Places365(
+#     root="~/data", train=False, download=True, transform=ToTensor(),
+# )
+
+from torchvision.datasets import ImageFolder
+
+# Load training data from local storage.
+training_data = ImageFolder(
+    root="~/gcp-kubernetes-ray/data/FashionMNIST/raw/train-images-idx3-ubyte",
+    transform=ToTensor(),
 )
 
-# Download test data from open datasets.
-test_data = datasets.FashionMNIST(
-    root="~/data", train=False, download=False, transform=ToTensor(),
+# Load test data from local storage.
+test_data = ImageFolder(
+    root="~/gcp-kubernetes-ray/data/FashionMNIST/raw/t10k-images-idx3-ubyte",
+    transform=ToTensor(),
 )
 
 

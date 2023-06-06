@@ -1,0 +1,21 @@
+files: parallelize_torch parallelize_xgboost
+repos:
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        language: python
+        types: [python]
+        entry: black
+      
+      - id: ruff
+        name: ruff
+        language: python
+        types: [python]
+        entry: ruff
+
+      - id: mypy
+        name: mypy
+        language: python
+        types: [python]
+        entry: mypy --implicit-option

@@ -11,14 +11,18 @@ test:
 
 .PHONY: format
 format:
-	find parallelize_torch -type f -name '*.py' -exec black {} +
+	find parallelize_torch parallelize_xgboost -type f -name '*.py' -exec black {} +
 
 .PHONY: lint
 lint:
-	find parallelize_torch -type f -name '*.py' -exec ruff check {} +
+	find parallelize_torch parallelize_xgboost -type f -name '*.py' -exec ruff check {} +
+
+.PHONY: typing
+typing:
+	find parallelize_torch parallelize_xgboost -type -name '*.py' -exec mypy --implicit-optional {} +
 
 .PHONY: refactor
-refactor: format lint
+refactor: format lint typing 
 
 .PHONY: all
-all: install lint test format 
+all: install format lint test  
