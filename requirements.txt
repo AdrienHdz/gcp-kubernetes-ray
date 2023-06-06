@@ -227,9 +227,7 @@ pyasn1==0.5.0
 pyasn1-modules==0.3.0
     # via google-auth
 pydantic==1.10.8
-    # via
-    #   -r requirements.in
-    #   ray
+    # via ray
 pyjwt==2.7.0
     # via databricks-cli
 pyparsing==3.0.9
@@ -262,6 +260,8 @@ requests==2.31.0
     #   torchvision
 rsa==4.9
     # via google-auth
+ruff==0.0.270
+    # via -r requirements.in
 scikit-learn==1.2.2
     # via mlflow
 scipy==1.10.1

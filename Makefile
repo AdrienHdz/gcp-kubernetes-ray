@@ -11,11 +11,11 @@ test:
 
 .PHONY: format
 format:
-	find main -type f -name '*.py' -exec black {} +
+	find parallelize_torch -type f -name '*.py' -exec black {} +
 
 .PHONY: lint
 lint:
-	find main -type f -name '*.py' -exec pylint --disable=R,C {} +
+	find parallelize_torch -type f -name '*.py' -exec ruff check {} +
 
 .PHONY: refactor
 refactor: format lint

@@ -1,6 +1,6 @@
 ray[default]
 mlflow
-pydantic
+ruff
 
 torch
 torchvision
