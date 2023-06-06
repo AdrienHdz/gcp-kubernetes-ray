@@ -1,4 +1,3 @@
-files: parallelize_torch parallelize_xgboost
 repos:
   - repo: local
     hooks:
