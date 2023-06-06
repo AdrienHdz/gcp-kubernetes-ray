@@ -12,15 +12,15 @@ test:
 
 .PHONY: format
 format:
-	find parallelize_torch parallelize_xgboost -type f -name '*.py' -exec black {} +
+	find parallelize -type f -name '*.py' -exec black {} +
 
 .PHONY: lint
 lint:
-	find parallelize_torch parallelize_xgboost -type f -name '*.py' -exec ruff check {} +
+	find parallelize -type f -name '*.py' -exec ruff check {} +
 
 .PHONY: typing
 typing:
-	find parallelize_torch parallelize_xgboost -type f -name '*.py' -exec mypy --implicit-optional {} +
+	find parallelize -type f -name '*.py' -exec mypy --implicit-optional {} +
 
 .PHONY: refactor
 refactor: format lint typing 
